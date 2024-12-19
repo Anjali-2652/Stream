@@ -3,21 +3,45 @@ import Trending from "./Trending";
 import Upcoming from "./Upcoming";
 import NowPlaying from "./NowPlaying";
 import TopRated from "./TopRated";
+import {Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
 
   const [homeImage, setHomeImage] = useState([]);
-  const [query, setQuery] = useState([]);
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
+
+  
   const getHomeImage = async()=>{
     const data = await fetch("https://api.themoviedb.org/3/discover/movie?api_key=3e03e1ce77256a238a84c7cb8c0f0271");
     const jsonData = await data.json();
     console.log(jsonData);
     setHomeImage(jsonData);
   }
-
+    const [trending, setTrending] = useState([]);
+    // const navigate = useNavigate();
+    const trendingmovies = async () => {
+      const data = await fetch(
+        "https://api.themoviedb.org/3/movie/popular?api_key=3e03e1ce77256a238a84c7cb8c0f0271"
+      );
+  
+      const jsonData = await data.json();
+      setTrending(jsonData.results)
+    };
+  
+    useEffect(() => {
+      trendingmovies();
+    }, []);
+  
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search?query=${encodeURIComponent(query)}`);
+    }
+  };
   useEffect(()=>{
-    getHomeImage
+    getHomeImage();
   },[])
  
 
@@ -31,18 +55,21 @@ const Home = () => {
             Millions of movies, TV shows and people to discover. Explore now
           </p>
         </div>
-        <form className="flex" action="submit">
+        <form className="flex" onSubmit={handleSearch}>
           <input
             className="mt-[45px] p-3 outline-none rounded-3xl w-full"
             type="text"
             placeholder="Search for a movie, tv show, person......."
-            onChange={(e)=>{
-              setQuery(e.target.value);
-            }}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
-          <button className="bg-sky-600 h-fit w-[100px] mt-[47px] p-2  text-white text-xl rounded-3xl absolute right-10 ">
+
+          <button 
+            type="submit"
+            className="bg-sky-600 h-fit w-[100px] mt-[47px] p-2 text-white text-xl rounded-3xl absolute right-10">
             Search
           </button>
+
         </form>
       </div>
 

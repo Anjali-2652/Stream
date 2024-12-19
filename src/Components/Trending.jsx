@@ -22,12 +22,15 @@ const Trending = () => {
     <div>
       <div className="flex gap-x-4 ml-8 overflow-x-scroll ">
         {trending.map((movie) => (
+
+          
          <img onClick={()=>{
           navigate('movies/'+movie.id)
          }}  className="h-[280px] w-[300px]  rounded-2xl" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
    
          
         ))}
+        <div className="text-black"> {trending?.title} </div>
       </div>
 
 

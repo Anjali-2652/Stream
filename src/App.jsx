@@ -7,6 +7,7 @@ import Home from "./Components/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainLayout from "./Components/MainLayout";
 import Details from "./Components/Details";
+import SearchResult from "./Components/SearchResult";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path="movies/:id" element={<Details />} />
+            <Route path="search" element={<SearchResult />} />
           </Route>
         </Routes>
       </BrowserRouter>

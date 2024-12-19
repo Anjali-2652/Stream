@@ -22,6 +22,17 @@ const Details = () => {
     setPlaying(jsonData);
   };
 
+
+
+
+
+
+
+
+
+
+  
+
   useEffect(() => {
     getDetails();
   }, []);
