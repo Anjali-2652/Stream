@@ -20,20 +20,24 @@ const Trending = () => {
 
   return (
     <div>
-      <div className="flex gap-x-4 ml-8 overflow-x-scroll ">
+      <div className="flex overflow-x-auto pb-4 px-4 sm:px-8 gap-3 sm:gap-4 hide-scrollbar">
         {trending.map((movie) => (
-
-          
-         <img onClick={()=>{
-          navigate('movies/'+movie.id)
-         }}  className="h-[280px] w-[300px]  rounded-2xl" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
-   
-         
+          <div 
+            key={movie.id}
+            className="flex-shrink-0 cursor-pointer transition-transform hover:scale-105"
+            onClick={() => navigate(`movies/${movie.id}`)}
+          >
+            <img 
+              className="h-[200px] w-[150px] sm:h-[280px] sm:w-[200px] rounded-2xl"
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+            />
+            <p className="mt-2 text-sm sm:text-base font-medium text-gray-800 truncate max-w-[150px] sm:max-w-[200px]">
+              {movie.title}
+            </p>
+          </div>
         ))}
-        <div className="text-black"> {trending?.title} </div>
       </div>
-
-
     </div>
   );
 };

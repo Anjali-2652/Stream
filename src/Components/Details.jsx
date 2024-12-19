@@ -42,60 +42,54 @@ const Details = () => {
       <Navigation />
       <div className="bg-blue-900 relative w-full text-white">
         <img
-          className="h-[530px] w-full mt-2 opacity-30"
+          className="h-[300px] sm:h-[530px] w-full mt-2 opacity-30 object-cover"
           src={`https://image.tmdb.org/t/p/w500${playing.poster_path}`}
+          alt={playing.title}
         />
 
-        <div className="absolute top-0 flex ">
+        <div className="absolute top-0 flex flex-col sm:flex-row p-4 sm:p-8">
           <img
-            className="h-[500px] w-[400px] p-8 rounded-full "
+            className="h-[250px] sm:h-[500px] w-auto rounded-xl"
             src={`https://image.tmdb.org/t/p/w500${playing.poster_path}`}
+            alt={playing.title}
           />
 
-          <div className="p-10">
-            <p className="text-3xl font-bold">
-              {playing.original_title}<span className="font-normal">({playing.origin_country})</span>
+          <div className="mt-4 sm:mt-0 sm:ml-8">
+            <p className="text-xl sm:text-3xl font-bold">
+              {playing.original_title}
+              <span className="font-normal ml-2">({playing.origin_country})</span>
             </p>
-            <ul className=" flex gap-x-10 text-[18px]">
-              <li>{playing.release_date}<span>({playing.origin_country})</span></li>
-              {/* <li className="list-disc">{playing.genres.map((type)=>(type.name))}</li> */}
-              <li className="list-disc">{playing.runtime} min</li>
+            
+            <ul className="flex flex-wrap gap-2 sm:gap-x-10 text-sm sm:text-lg mt-2">
+              <li>{playing.release_date}</li>
+              <li className="list-disc hidden sm:block">{playing.runtime} min</li>
             </ul>
 
-            <div className="flex  mt-5">
-                <div className=" flex items-center text-4xl"><LuLoaderCircle /></div>
-                <div className="flex text-2xl items-center ml-2">user score</div>
-                <div className="bg-blue-950 text-center ml-8 w-[220px] p-2 rounded-3xl font-bold">what's your vibe?</div>
+            <div className="flex flex-wrap items-center gap-4 mt-4 sm:mt-5">
+              <div className="flex items-center">
+                <div className="text-2xl sm:text-4xl"><LuLoaderCircle /></div>
+                <div className="text-lg sm:text-2xl ml-2">User Score</div>
+              </div>
+              <button className="bg-blue-950 px-4 py-2 rounded-3xl text-sm sm:text-base font-bold">
+                What's your vibe?
+              </button>
             </div>
 
-            <div className="flex mt-3 gap-x-5">
-                <button className="bg-blue-950 p-3 rounded-full"><FaListUl /></button>
-                <button className="bg-blue-950 p-3 rounded-full"><FaHeart /></button>
-                <button className="bg-blue-950 p-3 rounded-full"><FaBookmark /></button>
-                <button className="flex items-center text-2xl  ml-4"><VscTriangleRight /><span className=" font-bold text-[18px]">Play Trailer</span>
-                </button>
+            <div className="flex flex-wrap gap-3 mt-4">
+              <button className="bg-blue-950 p-2 sm:p-3 rounded-full"><FaListUl /></button>
+              <button className="bg-blue-950 p-2 sm:p-3 rounded-full"><FaHeart /></button>
+              <button className="bg-blue-950 p-2 sm:p-3 rounded-full"><FaBookmark /></button>
+              <button className="flex items-center text-lg sm:text-2xl ml-2">
+                <VscTriangleRight />
+                <span className="font-bold text-sm sm:text-lg">Play Trailer</span>
+              </button>
             </div>
 
-            <div className="mt-7">
-                <p className="italic text-xl">{playing.tagline}</p>
-                <p className="font-bold text-2xl mt-2">Overview</p>
-                <p>{playing.overview}</p>
-
-
-                <div className="flex flex-wrap gap-x-[190px] gap-y-2 mt-6">
-                    <div className="font-bold text-xl">Dana Ledoux Miller
-                        <div className="font-normal text-[16px]">Director, Writer</div>
-                    </div>
-                    <div className="font-bold text-xl">Ron Clements
-                        <div className="font-normal text-[16px]">Character</div>
-                    </div>
-                    <div className="font-bold text-xl">John Musker
-                        <div className="font-normal text-[16px]">Character</div>
-                    </div>
-                    
-                </div>
+            <div className="mt-6">
+              <p className="italic text-lg sm:text-xl">{playing.tagline}</p>
+              <p className="font-bold text-xl sm:text-2xl mt-4">Overview</p>
+              <p className="text-sm sm:text-base mt-2">{playing.overview}</p>
             </div>
-
           </div>
         </div>
       </div>
